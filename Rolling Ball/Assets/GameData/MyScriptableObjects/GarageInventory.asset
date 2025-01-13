@@ -1,0 +1,270 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4f7f99d84b1d942be4f6e7fca9ac0a, type: 3}
+  m_Name: GarageInventory
+  m_EditorClassIdentifier: 
+  vehicleStores:
+  - vehiclePrefab: {fileID: 5216593162863592957, guid: 41c0fabf24c45b14babeba7666443ea5, type: 3}
+    textures:
+    - {fileID: 2800000, guid: ef59d688d61cbe246a62fc7e6728d21e, type: 3}
+    - {fileID: 2800000, guid: 0e3ded9d1c8172c4295053bd854e9c41, type: 3}
+    - {fileID: 2800000, guid: 04dfe2d8ea710094eb7c469e55bf81e7, type: 3}
+    - {fileID: 2800000, guid: 54278d589e9308e419b36db61d8bf886, type: 3}
+    tirePrefabs:
+    - {fileID: 6898967624678934128, guid: f500227e9ea80af47b78164db9a7337d, type: 3}
+    - {fileID: 5640989386021510776, guid: d4a6eec399ccc074398cd84523b1b470, type: 3}
+    - {fileID: 2715838618730496742, guid: 6e38393823ec9ff42b37becd0c66d188, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000b80b0000a00f0000
+      sprite:
+      - {fileID: 21300000, guid: d37840263113c5f4d96fcf9f25c5f67b, type: 3}
+      - {fileID: 21300000, guid: 2547f6f4264e81f46b9250d5c34e9088, type: 3}
+      - {fileID: 21300000, guid: f1d2483acb6c7b149bdb52a16ce17953, type: 3}
+      - {fileID: 21300000, guid: e563682deee0ab54ebb7fb3942fcea70, type: 3}
+      locked: 000101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: d37840263113c5f4d96fcf9f25c5f67b, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: 8c64642f816f8bd46abae012488d153c, type: 3}
+      - {fileID: 21300000, guid: 494706bad050493469f53ba729845df2, type: 3}
+      - {fileID: 21300000, guid: 5f525945ceb6a9d408aba9b6e5afff0d, type: 3}
+      locked: 000101
+  - vehiclePrefab: {fileID: 1000012718758630, guid: 87de20d85aaa4624bbf62a69b7467b07, type: 3}
+    textures:
+    - {fileID: 2800000, guid: 4a193b42b1d730f43a4d8680e2428d05, type: 3}
+    - {fileID: 2800000, guid: 380db69480243804ebb4da51f5ebdf4e, type: 3}
+    - {fileID: 2800000, guid: 67b312a48a63b584598380fe99f35a36, type: 3}
+    tirePrefabs:
+    - {fileID: 5977904028350841618, guid: 584c1de57c28ef1469344023d273ede5, type: 3}
+    - {fileID: 1685704545359425763, guid: 43b468a3278da0841b3c382fff1030a8, type: 3}
+    - {fileID: 6012396676897471058, guid: 262a3ec98c31270469d7078c68e4782a, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000b80b0000
+      sprite:
+      - {fileID: 21300000, guid: d867f87dceff1474fa704e16d6cfae3a, type: 3}
+      - {fileID: 21300000, guid: ceedbb7e435020c47b780624084c4d41, type: 3}
+      - {fileID: 21300000, guid: 10d353dd6cacca944b3db872352c764f, type: 3}
+      locked: 000101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: d867f87dceff1474fa704e16d6cfae3a, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: bddb3fb8a29794f42b7c1c33d3c13d6b, type: 3}
+      - {fileID: 21300000, guid: 6897f6cfcea242146816e30aaa3999b7, type: 3}
+      - {fileID: 21300000, guid: 3ebfecd78baabf240b6da67d81b4656d, type: 3}
+      locked: 000101
+  - vehiclePrefab: {fileID: 1000012883443064, guid: 3baed78f45c13ab4789ed07495635763, type: 3}
+    textures:
+    - {fileID: 2800000, guid: 3c729b6d04bea8d4a857dad9d390c369, type: 3}
+    - {fileID: 2800000, guid: 1c92a33c42126604a8ccc1493d814895, type: 3}
+    - {fileID: 2800000, guid: 56623976967d80846b28f70067812531, type: 3}
+    - {fileID: 2800000, guid: 0c28fa48dc061364c84d59605f00d73d, type: 3}
+    tirePrefabs:
+    - {fileID: 5977904028350841618, guid: 584c1de57c28ef1469344023d273ede5, type: 3}
+    - {fileID: 1685704545359425763, guid: 43b468a3278da0841b3c382fff1030a8, type: 3}
+    - {fileID: 6012396676897471058, guid: 262a3ec98c31270469d7078c68e4782a, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000b80b0000a00f0000
+      sprite:
+      - {fileID: 21300000, guid: 6595847ff0eb37f44a964e4d5d1bb2ca, type: 3}
+      - {fileID: 21300000, guid: de9a583009cfd144baa8bd53fbbf86f9, type: 3}
+      - {fileID: 21300000, guid: 37db34311d3374f4ba086487d850684c, type: 3}
+      - {fileID: 21300000, guid: 12f79e14bd0115c41a480020f341eeb9, type: 3}
+      locked: 00010101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 6595847ff0eb37f44a964e4d5d1bb2ca, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: bddb3fb8a29794f42b7c1c33d3c13d6b, type: 3}
+      - {fileID: 21300000, guid: 6897f6cfcea242146816e30aaa3999b7, type: 3}
+      - {fileID: 21300000, guid: 3ebfecd78baabf240b6da67d81b4656d, type: 3}
+      locked: 000101
+  - vehiclePrefab: {fileID: 3262951363443589913, guid: 7320128760c297642b912547c0372141, type: 3}
+    textures:
+    - {fileID: 2800000, guid: 16095180e0861eb44b525ffc664e8cab, type: 3}
+    - {fileID: 2800000, guid: 2f8dbed155813574ca7baf98ba13f9dc, type: 3}
+    tirePrefabs:
+    - {fileID: 70214313417111152, guid: 5c685790418093040b253f7c4be31ffb, type: 3}
+    - {fileID: 8420883310273121242, guid: 5da6a4be3d12b034daa322af640e99ca, type: 3}
+    - {fileID: 8384856946528291891, guid: 70c0f37eec3e6b94fa63bd5d30af207a, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000
+      sprite:
+      - {fileID: 21300000, guid: 5a43cdbfb7984f24c81c221349a7e263, type: 3}
+      - {fileID: 21300000, guid: 40acd413aa7a0c04284188c82e092d79, type: 3}
+      locked: 0001
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 5a43cdbfb7984f24c81c221349a7e263, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: 48aa3175d42e1f141ab57df8d150e7db, type: 3}
+      - {fileID: 21300000, guid: 48aa3175d42e1f141ab57df8d150e7db, type: 3}
+      - {fileID: 21300000, guid: 9c03d431a8d5ddb48b96e2af52ed9f09, type: 3}
+      locked: 000101
+  - vehiclePrefab: {fileID: 1000011933350482, guid: b64af0671fb27794dbd09812a5f35803, type: 3}
+    textures:
+    - {fileID: 2800000, guid: fe394db3e3b363a428489a9ba0ac438a, type: 3}
+    - {fileID: 2800000, guid: 0c28fa48dc061364c84d59605f00d73d, type: 3}
+    - {fileID: 2800000, guid: de5d63abb1c7f0b4d9acfdf7e0245d6d, type: 3}
+    tirePrefabs:
+    - {fileID: 8420883310273121242, guid: ee2dd1a23d7365b4ab87c412a4373af5, type: 3}
+    - {fileID: 8384856946528291891, guid: bc3150da1fc221e4ebb131fd67554c00, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000a00f0000401f0000
+      sprite:
+      - {fileID: 21300000, guid: 8eb004168a65cdc43a5919ca9a585382, type: 3}
+      - {fileID: 21300000, guid: cd60e060e326be547aa73ba4ab112182, type: 3}
+      - {fileID: 21300000, guid: 32c8e46b6b9bfbd4d8d363fbf533c7e3, type: 3}
+      locked: 000101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 8eb004168a65cdc43a5919ca9a585382, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000
+      sprite:
+      - {fileID: 21300000, guid: 48aa3175d42e1f141ab57df8d150e7db, type: 3}
+      - {fileID: 21300000, guid: 9c03d431a8d5ddb48b96e2af52ed9f09, type: 3}
+      locked: 0001
+  - vehiclePrefab: {fileID: 1000010975236142, guid: 23dee292e3a9e4d8ea247628b1c0a248, type: 3}
+    textures:
+    - {fileID: 2800000, guid: fd2d04f7e5a366c4193f1f96d6e3d602, type: 3}
+    tirePrefabs:
+    - {fileID: 8420883310273121242, guid: 1af73189d1110da45ac2abb97e7fb9ed, type: 3}
+    - {fileID: 8384856946528291891, guid: 496598462b23b934b914e5ced6c51e30, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000
+      sprite:
+      - {fileID: 21300000, guid: ee287d012291f2045ae9ad6bc5eb3771, type: 3}
+      locked: 00
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: ee287d012291f2045ae9ad6bc5eb3771, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000
+      sprite:
+      - {fileID: 21300000, guid: 48aa3175d42e1f141ab57df8d150e7db, type: 3}
+      - {fileID: 21300000, guid: 9c03d431a8d5ddb48b96e2af52ed9f09, type: 3}
+      locked: 0001
+  - vehiclePrefab: {fileID: 1686760899769533423, guid: 57a8affad54cf684d98405c8ccb462cf, type: 3}
+    textures:
+    - {fileID: 2800000, guid: ef59d688d61cbe246a62fc7e6728d21e, type: 3}
+    - {fileID: 2800000, guid: 04dfe2d8ea710094eb7c469e55bf81e7, type: 3}
+    - {fileID: 2800000, guid: 0e3ded9d1c8172c4295053bd854e9c41, type: 3}
+    - {fileID: 2800000, guid: a41152c33ad2b004e95509e8bc05e050, type: 3}
+    tirePrefabs:
+    - {fileID: 6898967624678934128, guid: f500227e9ea80af47b78164db9a7337d, type: 3}
+    - {fileID: 5640989386021510776, guid: d4a6eec399ccc074398cd84523b1b470, type: 3}
+    - {fileID: 2715838618730496742, guid: 6e38393823ec9ff42b37becd0c66d188, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000b80b0000a00f0000
+      sprite:
+      - {fileID: 21300000, guid: 1161231b165efa241a4980beb4f0408d, type: 3}
+      - {fileID: 21300000, guid: b91e99f3d8044244fa73c42f16eb143f, type: 3}
+      - {fileID: 21300000, guid: f2aa1c4ec2661f2428a3c45413b25f1d, type: 3}
+      - {fileID: 21300000, guid: eb934335a93d2a1439f19d0e59ca3adf, type: 3}
+      locked: 00010101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 1161231b165efa241a4980beb4f0408d, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: 8c64642f816f8bd46abae012488d153c, type: 3}
+      - {fileID: 21300000, guid: 494706bad050493469f53ba729845df2, type: 3}
+      - {fileID: 21300000, guid: 5f525945ceb6a9d408aba9b6e5afff0d, type: 3}
+      locked: 000101
+  - vehiclePrefab: {fileID: 1069227103805537751, guid: 1898c171991814e439be89debce7a7c3, type: 3}
+    textures:
+    - {fileID: 2800000, guid: 16095180e0861eb44b525ffc664e8cab, type: 3}
+    - {fileID: 2800000, guid: 2f8dbed155813574ca7baf98ba13f9dc, type: 3}
+    tirePrefabs:
+    - {fileID: 70214313417111152, guid: 3df69bdf59d0b7b4bbcdd4014e421ecf, type: 3}
+    - {fileID: 8384856946528291891, guid: dad9d4a5e9359d24ab656ae800dbfaef, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000
+      sprite:
+      - {fileID: 21300000, guid: 7734530281e33c947afce9072277b8e5, type: 3}
+      - {fileID: 21300000, guid: b8c6f3e5fff7fbd489a8863c9a22b0cc, type: 3}
+      locked: 0001
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 7734530281e33c947afce9072277b8e5, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000
+      sprite:
+      - {fileID: 21300000, guid: 0c4d389a0f4d62e4e82d9c76e76a7f0f, type: 3}
+      - {fileID: 21300000, guid: 9c03d431a8d5ddb48b96e2af52ed9f09, type: 3}
+      locked: 0001
+  - vehiclePrefab: {fileID: 1000014137814592, guid: 260318ba7aea051458cda9371da673a0, type: 3}
+    textures:
+    - {fileID: 2800000, guid: 5e5fdb69ea810ea4ebfd067e6e72f4bb, type: 3}
+    - {fileID: 2800000, guid: bf9b7b82e43e900488a48c8d1efbec2f, type: 3}
+    - {fileID: 2800000, guid: e2c6ebef824ce8444998b20ccb72d60b, type: 3}
+    - {fileID: 2800000, guid: 69d0a6f3d0bffbf42a86038794c93ec4, type: 3}
+    tirePrefabs:
+    - {fileID: 5977904028350841618, guid: 584c1de57c28ef1469344023d273ede5, type: 3}
+    - {fileID: 1685704545359425763, guid: 43b468a3278da0841b3c382fff1030a8, type: 3}
+    - {fileID: 6012396676897471058, guid: 262a3ec98c31270469d7078c68e4782a, type: 3}
+    shop:
+    - shopType: 1
+      price: e8030000d0070000b80b0000a00f0000
+      sprite:
+      - {fileID: 21300000, guid: 11d14ff02004d4d41b5ac72ef69aaf3b, type: 3}
+      - {fileID: 21300000, guid: 3e6411988e457b74c896645e167de335, type: 3}
+      - {fileID: 21300000, guid: ff867e67296a0ca4a996bc5f912482ac, type: 3}
+      - {fileID: 21300000, guid: 8e25723afdf98bd42a6f50a08a5cbaf5, type: 3}
+      locked: 00010101
+    - shopType: 2
+      price: 00000000
+      sprite:
+      - {fileID: 21300000, guid: 11d14ff02004d4d41b5ac72ef69aaf3b, type: 3}
+      locked: 00
+    - shopType: 3
+      price: 00000000f4010000e8030000
+      sprite:
+      - {fileID: 21300000, guid: bddb3fb8a29794f42b7c1c33d3c13d6b, type: 3}
+      - {fileID: 21300000, guid: 6897f6cfcea242146816e30aaa3999b7, type: 3}
+      - {fileID: 21300000, guid: 3ebfecd78baabf240b6da67d81b4656d, type: 3}
+      locked: 000101

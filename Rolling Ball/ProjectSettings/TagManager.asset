@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Obstacle
+  - Index
+  - Ground
+  - Ball
+  - Borders
+  - Enemy
+  - LevelStartPoint
+  - LevelEndPoint
+  - Wall
+  - Tile
+  - wasted
+  - LevelFailTrigger
+  - RevivePointTrigger
+  - WallTriggerToUpgrade
+  - prop
+  - Block
+  - Effects
+  - SlopeDownward
+  - SlopeUpward
+  - FxTemporaire
+  - EventTrigger
+  - Ghost
+  - Lifter
+  - Hole
+  - Pendulum
+  - CirclePlatform
+  - MovingPlatform
+  - ReverseViewTrigger
+  - NonReverseViewTrigger
+  - TopViewTrigger
+  - NonTopViewTrigger
+  - PendulumSingleSide
+  - Collectable
+  - None
+  - NormalDrag
+  - TopViewTrigger2
+  - CameraViewTrigger
+  - OppositeGravity
+  - LevelCompleteTrigger
+  - SewerageBall
+  - ActivateCameraReCentering
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Borders
+  - Ground
+  - LevelStartPoint
+  - LevelEndPoint
+  - Ball
+  - Obstacle
+  - LevelFailTrigger
+  - SlopeDownward
+  - SlopeUpward
+  - Dashboard
+  - RevivePointTrigger
+  - Blocks
+  - Magnet
+  - pins
+  - Enemy
+  - pieces
+  - Wasted
+  - billboard
+  - Lifter
+  - Hole
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

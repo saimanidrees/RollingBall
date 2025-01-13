@@ -1,0 +1,51 @@
+Ball run Loading screen.png
+size:658,400
+filter:Linear,Linear
+pma:true
+Ball 1
+bounds:499,48,74,74
+Ball 2
+bounds:178,10,74,75
+rotate:90
+Ball 3
+bounds:255,10,75,74
+Ball 4
+bounds:422,90,74,75
+rotate:90
+Ball 5
+bounds:422,14,74,74
+Closed eyes
+bounds:422,166,232,159
+rotate:90
+Eye 1
+bounds:2,9,75,93
+rotate:90
+Eye 2
+bounds:583,303,73,95
+Eyebrow 1
+bounds:376,12,36,21
+Eyebrow 2
+bounds:332,2,36,21
+Head
+bounds:2,86,377,312
+L Leg
+bounds:575,23,73,99
+L1
+bounds:97,10,74,79
+rotate:90
+L2
+bounds:583,245,56,56
+Mouth
+bounds:498,13,41,33
+R Leg
+bounds:499,124,40,102
+rotate:90
+R1
+bounds:603,154,89,52
+rotate:90
+R2
+bounds:332,25,59,42
+rotate:90
+Shadow
+bounds:381,35,363,39
+rotate:90

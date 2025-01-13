@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterGroundLava
+  m_Shader: {fileID: 4800000, guid: 8c9fe6a4594d3dc4bb6fc946b1115450, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _NORMALMAP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 93f2bf4a1adaa95458e219a14702a10c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectiveColor:
+        m_Texture: {fileID: 2800000, guid: aaf925872d08c194597eca6d25854bd9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RefractionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AnimSpeed: 2
+    - _BLEND_SCREEN: 0
+    - _Bri: 0
+    - _BumpAmt: 10
+    - _BumpScale: 1
+    - _Con: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EMISSION_ON: 0
+    - _EmissionSpeed: 2
+    - _FresnelScale: 0.75
+    - _GerstnerIntensity: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _Hue: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _ReflDistort: 1.5
+    - _RefrDistort: 1.5
+    - _Sat: 1
+    - _Shininess: 200
+    - _SmoothnessTextureChannel: 0
+    - _Specular: 0.3
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _UV_ANIMATION_ON: 0
+    - _VERTEXCOLOR_ON: 0
+    - _WaveScale: 0.15
+    - _ZWrite: 1
+    m_Colors:
+    - WaveSpeed: {r: 2, g: 2, b: -2, a: -2}
+    - _AnimationDirection: {r: 1, g: 1, b: 1, a: 1}
+    - _AnimationTiling: {r: 2.2, g: 2.2, b: -1.1, a: -1.1}
+    - _BaseColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
+    - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
+    - _BumpMap_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+    - _DistortParams: {r: 1, g: 1, b: 2, a: 1.15}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _Foam: {r: 0.1, g: 0.375, b: 0, a: 0}
+    - _Fresnel_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _GAmplitude: {r: 0.3, g: 0.35, b: 0.25, a: 0.25}
+    - _GDirectionAB: {r: 0.3, g: 0.85, b: 0.85, a: 0.25}
+    - _GDirectionCD: {r: 0.1, g: 0.9, b: 0.5, a: 0.5}
+    - _GFrequency: {r: 1.3, g: 1.35, b: 1.25, a: 1.25}
+    - _GSpeed: {r: 1.2, g: 1.375, b: 1.1, a: 1.5}
+    - _GSteepness: {r: 1, g: 1, b: 1, a: 1}
+    - _HorizonColor: {r: 0.9607843, g: 0.6433505, b: 0.09411763, a: 1}
+    - _InvFadeParemeter: {r: 0.15, g: 0.15, b: 0.5, a: 1}
+    - _MainTex_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _ReflectionColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
+    - _ReflectionTex_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _ReflectiveColorCube_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _ReflectiveColor_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _RefrColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RefractionTex_ST: {r: 1, g: 1, b: 0, a: 0}
+    - _SpecularColor: {r: 0.72, g: 0.72, b: 0.72, a: 1}
+    - _WorldLightDir: {r: 0, g: 0.1, b: -0.5, a: 0}
+    - _horizonColor: {r: 0.172, g: 0.463, b: 0.435, a: 0}
+  m_BuildTextureStacks: []

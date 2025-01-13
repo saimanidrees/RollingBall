@@ -1,0 +1,197 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: road_1 1
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _MK_COLOR_GRADING_ALBEDO
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    IGNOREPROJECTOR: False
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BackTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveBorderRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseMap:
+        m_Texture: {fileID: 2800000, guid: b376780a16f30e141824d5baae6b8f5e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalsTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PositionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VertexAnimationMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AdvancedTab: 1
+    - _AlbedoMapIntensity: 1
+    - _AlphaClipping: 0
+    - _AlphaCutoff: 0.5
+    - _AnimationSpeed: 1
+    - _Blend: 0
+    - _BlendDst: 0
+    - _BlendDstAlpha: 0
+    - _BlendSrc: 1
+    - _BlendSrcAlpha: 1
+    - _Brightness: 1
+    - _BumpScale: 1
+    - _ColorGrading: 1
+    - _Contrast: 1.5
+    - _Cull: 2
+    - _CurrentFrame: 0
+    - _Cutoff: 0.5
+    - _CutoffInverse: 0
+    - _CutoffValue: 0
+    - _DetailNormalMapScale: 1
+    - _Dissolve: 0
+    - _DissolveAmount: 0.5
+    - _DissolveBorderSize: 0.25
+    - _DissolveMapScale: 1
+    - _DstBlend: 0
+    - _FresnelFrom: 0
+    - _FresnelTo: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _Initialized: 0
+    - _InputTab: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _NormalIntensity: 1
+    - _OcclusionStrength: 1
+    - _OffsetF: 0
+    - _OffsetU: 0
+    - _OptionsTab: 1
+    - _Parallax: 0.02
+    - _RenderFace: 2
+    - _RenderPriority: 0
+    - _Saturation: 1
+    - _ShineAngle: 1
+    - _ShineDistortion: 0
+    - _ShineFrom: 0
+    - _ShinePos: 0
+    - _ShinePosFrom: 0
+    - _ShinePosLength: 0
+    - _ShineSilhouette: 0
+    - _ShineSpeed: 0
+    - _ShineTo: 1
+    - _ShineWidth: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecFrom: 0
+    - _SpecPower: 12
+    - _SpecTo: 1
+    - _SpecValue: 1
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 1
+    - _StencilComp: 8
+    - _StencilFail: 0
+    - _StencilPass: 0
+    - _StencilReadMask: 255
+    - _StencilRef: 0
+    - _StencilWriteMask: 255
+    - _StencilZFail: 0
+    - _StylizeTab: 1
+    - _Surface: 0
+    - _UVSec: 0
+    - _VertexAnimation: 0
+    - _VertexAnimationIntensity: 0
+    - _VertexAnimationStutter: 0
+    - _WorldScale: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    m_Colors:
+    - _AlbedoColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorBack: {r: 0.38875046, g: 0.49490157, b: 0.9056604, a: 1}
+    - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MaskLitColor: {r: 1, g: 1, b: 1, a: 0}
+    - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UnlitColor: {r: 1, g: 1, b: 1, a: 0}
+    - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
+  m_BuildTextureStacks: []

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "129840010738",
+    "project_id": "ball-run-3d-number-merge-2048",
+    "storage_bucket": "ball-run-3d-number-merge-2048.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129840010738:android:f84b295893bf784080476b",
+        "android_client_info": {
+          "package_name": "com.gtsy.ballrun2048.ballrun.countmasters.numbersrun.mergenumber.numberrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129840010738-4jb49faoanpb6gb0j4hs5i90i06hop9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM46EidZEIdU3K0UUny1pCVS56dkobJ1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129840010738-4jb49faoanpb6gb0j4hs5i90i06hop9p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1042488596199134~8550303899"
+    }
+  ],
+  "configuration_version": "1"
+}

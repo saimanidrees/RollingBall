@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">129840010738</string>
+  <string name="google_storage_bucket" translatable="false">ball-run-3d-number-merge-2048.appspot.com</string>
+  <string name="project_id" translatable="false">ball-run-3d-number-merge-2048</string>
+  <string name="google_api_key" translatable="false">AIzaSyBM46EidZEIdU3K0UUny1pCVS56dkobJ1k</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBM46EidZEIdU3K0UUny1pCVS56dkobJ1k</string>
+  <string name="google_app_id" translatable="false">1:129840010738:android:f84b295893bf784080476b</string>
+  <string name="default_web_client_id" translatable="false">129840010738-4jb49faoanpb6gb0j4hs5i90i06hop9p.apps.googleusercontent.com</string>
+</resources>
