@@ -1009,6 +1009,26 @@ PrefabInstance:
       propertyPath: wallBreakingSound
       value: 
       objectReference: {fileID: 8300000, guid: d1b0683cd5ffaa44daf96e72380ecfd6, type: 3}
+    - target: {fileID: 114147593104640068, guid: 167034893caae95458a8535cf7596a16,
+        type: 3}
+      propertyPath: rollingBallBgMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 5a035ffffabc92f4ca11ec5202bc5c96, type: 3}
+    - target: {fileID: 114147593104640068, guid: 167034893caae95458a8535cf7596a16,
+        type: 3}
+      propertyPath: rollingBallHitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e8856e48547d2a4598486a9273117cd, type: 3}
+    - target: {fileID: 114147593104640068, guid: 167034893caae95458a8535cf7596a16,
+        type: 3}
+      propertyPath: rollingBallWinSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5b5a899dfcf14e7409bffbb29be8bbf4, type: 3}
+    - target: {fileID: 114147593104640068, guid: 167034893caae95458a8535cf7596a16,
+        type: 3}
+      propertyPath: rollingBallCoinSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8782aa99c6930ee4d82cfda430468c2a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1674,7 +1694,7 @@ MonoBehaviour:
   isFreeStop: 0
   isTesting: 0
   modeNo: 0
-  levelNo: 2
+  levelNo: 3
 --- !u!4 &2005055263
 Transform:
   m_ObjectHideFlags: 0

@@ -33,9 +33,11 @@ namespace _RollingBall.MyScripts
                     topViewCamera4.Priority = 9;
                     topViewCamera5.Priority = 9;
                     topViewCamera6.Priority = 9;
+                    GamePlayManager.Instance.GetCameraController().UnPauseTheAlignment();
                     break;
                 case CameraViews.WithoutReverse:
                     cameraWithoutReverseView.Priority = 11;
+                    GamePlayManager.Instance.GetCameraController().PauseTheAlignmentOnly();
                     break;
                 case CameraViews.TopView0:
                     topViewCamera0.Priority = 11;

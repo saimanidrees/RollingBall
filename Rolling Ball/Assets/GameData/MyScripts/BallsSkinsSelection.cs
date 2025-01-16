@@ -32,7 +32,7 @@ public class BallsSkinsSelection : MonoBehaviour
     {
         SoundController.Instance.PlayBuySound();
         Debug.Log("_currentSkinNo: " + _currentSkinNo);
-        GamePlayManager.Instance._isBallUnlocked[_currentSkinNo] = true;
+        GamePlayManager.Instance.isBallUnlocked[_currentSkinNo] = true;
         RefreshUI();
     }
     public void CloseBallsSkinsSelection()
@@ -72,9 +72,9 @@ public class BallsSkinsSelection : MonoBehaviour
         mainBallRender.gameObject.SetActive(false);
         mainBallRender.sprite = ballsRenders[_currentSkinNo];
         mainBallRender.gameObject.SetActive(true);
-        tapToTryBtn.SetActive(!GamePlayManager.Instance._isBallUnlocked[_currentSkinNo]);
-        selectedBtn.SetActive(GamePlayManager.Instance._isBallUnlocked[_currentSkinNo]);
-        if (!GamePlayManager.Instance._isBallUnlocked[_currentSkinNo]) return;
+        tapToTryBtn.SetActive(!GamePlayManager.Instance.isBallUnlocked[_currentSkinNo]);
+        selectedBtn.SetActive(GamePlayManager.Instance.isBallUnlocked[_currentSkinNo]);
+        if (!GamePlayManager.Instance.isBallUnlocked[_currentSkinNo]) return;
         var skinHandler = GamePlayManager.Instance.currentPlayer.GetComponent<BallsSkinsHandler>();
         skinHandler.SetSkinIndex(_currentSkinNo);
         skinHandler.ApplySkin();

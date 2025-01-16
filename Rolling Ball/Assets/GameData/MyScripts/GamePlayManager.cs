@@ -17,21 +17,20 @@ namespace GameData.MyScripts
         [SerializeField] private Transform playerPositions;
         [SerializeField] private GameObject levelFailTrigger;
         [SerializeField] private GameObject[] endingScenes;
-        [HideInInspector] public bool[] _isBallUnlocked = {false, false, false, false, false, false, false, false, false};
+        [HideInInspector] public bool[] isBallUnlocked = {false, false, false, false, false, false, false, false, false};
         [HideInInspector] public bool isLevelCompleteRewardGiven = false;
         [System.Serializable]
         public class LevelList
         {
             public string[] levels;
         }
-
-        private LevelList levelsList;
+        private LevelList _levelsList;
         public static GamePlayManager Instance;
         private void Awake()
         {
             Application.targetFrameRate = 120;
             Instance = this;
-            SoundController.Instance.PlayGamePlayBackgroundMusic();
+            SoundController.Instance.PlayBackgroundMusic();;
             FirstPlay();
         }
         private void FirstPlay()

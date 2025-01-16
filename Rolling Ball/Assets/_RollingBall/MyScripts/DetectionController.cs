@@ -12,15 +12,22 @@ namespace _RollingBall.MyScripts
                     _movable ??= GetComponent<IMovable>();
                     _movable.Push(collision.transform.up * 500f);
                     SoundController.Instance.PlayRollingBallHitSound();
+                    GamePlayManager.Instance.vibrationManager.TapPeekVibrate();
                     break;
                 case PlayerPrefsHandler.PendulumSingleSideTag:
                     _movable ??= GetComponent<IMovable>();
                     _movable.MinimumDrag(true);
                     _movable.Push(collision.transform.up * 1000f);
                     SoundController.Instance.PlayRollingBallHitSound();
+                    GamePlayManager.Instance.vibrationManager.TapPeekVibrate();
                     break;
                 case PlayerPrefsHandler.MovingPlatformTag:
                     transform.SetParent(collision.transform);
+                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
+                    break;
+                case PlayerPrefsHandler.PropTag:
+                    SoundController.Instance.PlayRollingBallHitSound();
+                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
                     break;
             }
         }
@@ -49,9 +56,11 @@ namespace _RollingBall.MyScripts
             {
                 case PlayerPrefsHandler.ReverseViewTriggerTag:
                     GamePlayManager.Instance.SetReverseViewCamera(9);
+                    GamePlayManager.Instance.GetCameraController().UnPauseTheAlignment();
                     break;
                 case PlayerPrefsHandler.NonReverseViewTriggerTag:
                     GamePlayManager.Instance.SetReverseViewCamera(11);
+                    GamePlayManager.Instance.GetCameraController().PauseTheAlignmentOnly();
                     break;
                 case PlayerPrefsHandler.NonTopViewTriggerTag:
                     GamePlayManager.Instance.SetTopViewCamera(9);
@@ -67,6 +76,7 @@ namespace _RollingBall.MyScripts
                     other.transform.GetChild(0).gameObject.SetActive(false);
                     other.transform.GetChild(1).gameObject.SetActive(true);
                     SoundController.Instance.PlayRollingBallCoinSound();
+                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
                     break;
                 case PlayerPrefsHandler.NormalDragTag:
                     _movable ??= GetComponent<IMovable>();
@@ -79,6 +89,7 @@ namespace _RollingBall.MyScripts
                     _movable ??= GetComponent<IMovable>();
                     _movable.FlyUp(true);
                     GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(false);
+                    GamePlayManager.Instance.GetCameraController().PauseTheAlignmentOnly();
                     break;
                 case PlayerPrefsHandler.LevelCompleteTriggerTag:
                     _movable ??= GetComponent<IMovable>();
@@ -99,6 +110,7 @@ namespace _RollingBall.MyScripts
                     _movable ??= GetComponent<IMovable>();
                     _movable.FlyUp(false);
                     GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(true);
+                    GamePlayManager.Instance.GetCameraController().UnPauseTheAlignment();
                     break;
             }
         }

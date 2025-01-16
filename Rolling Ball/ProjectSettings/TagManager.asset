@@ -45,6 +45,7 @@ TagManager:
   - LevelCompleteTrigger
   - SewerageBall
   - ActivateCameraReCentering
+  - Prop
   layers:
   - Default
   - TransparentFX

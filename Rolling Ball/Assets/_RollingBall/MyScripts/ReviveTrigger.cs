@@ -23,7 +23,8 @@ namespace _RollingBall.MyScripts
                 ball.transform.rotation = _respawnPoint.rotation;
                 rb.isKinematic = false;
                 GamePlayManager.Instance.SetXAxisValue(_respawnPoint.eulerAngles.y);
-                ball.Push(_respawnPoint.forward * 4f);
+                GamePlayManager.Instance.GetCameraController().PauseTheAlignment(true);
+                //ball.Push(_respawnPoint.forward * 4f);
                 ball.AllowMovement(true);
             }
         }

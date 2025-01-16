@@ -24,19 +24,12 @@ public class SoundController : MonoBehaviour {
             return;
         bgAudioSource.clip = backgroundMusic;
         bgAudioSource.volume = 0.2f;
-        if (!bgAudioSource.isPlaying)
-            bgAudioSource.Play ();
+        bgAudioSource.Play ();
     }
 	public void MuteBackgroundMusic(){
 		bgAudioSource.clip = null;
 		bgAudioSource.Stop ();
 	}
-    public void PlayGamePlayBackgroundMusic()
-    {
-        if (!PlayerPrefsHandler.GetSoundControllerBool(SoundString))
-            return;
-        bgAudioSource.volume = 0.2f;
-    }
     public void MuteSound(){
 		soundAudioSource.Stop ();
 	}
@@ -140,9 +133,8 @@ public class SoundController : MonoBehaviour {
         if (!PlayerPrefsHandler.GetSoundControllerBool(SoundString))
             return;
         bgAudioSource.clip = rollingBallBgMusic;
-        bgAudioSource.volume = 0.2f;
-        if (!bgAudioSource.isPlaying)
-            bgAudioSource.Play ();
+        bgAudioSource.volume = 0.4f;
+        bgAudioSource.Play ();
     }
     public void PlayRollingBallCoinSound()
     {

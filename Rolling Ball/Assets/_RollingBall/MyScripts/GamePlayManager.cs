@@ -15,6 +15,8 @@ namespace _RollingBall.MyScripts
         [SerializeField] private CameraViewController cameraViewController;
         private const int TotalLives = 5;
         private int _liveCount = 0;
+        [SerializeField] private CameraController cameraController;
+        public VibrationManager vibrationManager;
         private void Awake()
         {
             Instance = this;
@@ -81,7 +83,9 @@ namespace _RollingBall.MyScripts
         private IEnumerator DelayForLevelComplete(float delay)
         {
             SetNextLevel();
+            cameraController.SetViewForLevelEnd();
             GetCameraViewController().SetLevelCompleteView();
+            vibrationManager.TapVibrate();
             yield return new WaitForSeconds(delay);
             if (gameOverFlag)
             {
@@ -168,6 +172,10 @@ namespace _RollingBall.MyScripts
                 return false;
             else
                 return true;
+        }
+        public CameraController GetCameraController()
+        {
+            return cameraController;
         }
         private void SendProgressionEvent(GAProgressionStatus status)
         {

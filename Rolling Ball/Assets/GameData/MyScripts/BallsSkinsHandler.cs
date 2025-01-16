@@ -6,7 +6,7 @@ public class BallsSkinsHandler : MonoBehaviour
     private int _ballSkinIndex = -1;
     public void ApplySkin()
     {
-        GamePlayManager.Instance._isBallUnlocked[_ballSkinIndex] = true;
+        GamePlayManager.Instance.isBallUnlocked[_ballSkinIndex] = true;
         HideAllSkins();
         foreach (var t in ballsSkins)
         {
@@ -15,7 +15,7 @@ public class BallsSkinsHandler : MonoBehaviour
     }
     public void ApplySkin(int skinIndex)
     {
-        GamePlayManager.Instance._isBallUnlocked[skinIndex] = true;
+        GamePlayManager.Instance.isBallUnlocked[skinIndex] = true;
         HideAllSkins();
         foreach (var t in ballsSkins)
         {

@@ -1,67 +1,140 @@
+using System.Collections;
 using UnityEngine;
-
 namespace _RollingBall.MyScripts
 {
     public class CameraController : MonoBehaviour
     {
-        public Transform ball; // Reference to the ball
-        public Rigidbody ballRigidbody; // Rigidbody attached to the ball
+        [Header("References")] public Transform ball; // The ball to follow
+        public Transform cameraTransform; // The camera's transform (child of CameraRoot)
 
-        [Header("Follow Settings")] public float followSpeed = 10f; // Speed at which CameraRoot follows the ball
-        public Vector3 offset = new Vector3(0, 5, -10); // Initial offset relative to the ball
+        [Header("Camera Settings")] public float height = 5f; // Height offset of the camera
+        public float distance = 10f; // Distance behind the ball
 
-        [Header("Orbit Settings")] public float orbitSpeed = 30f; // Speed of Pivot rotation around the ball
+        [Header("Alignment Settings")] public float baseAlignmentSpeed = 1f; // Minimum alignment speed
+        public float maxAlignmentSpeed = 5f; // Maximum alignment speed
+        public float speedThreshold = 10f; // Maximum ball speed for scaling alignment speed
 
-        private Transform cameraRoot; // CameraRoot for following the ball
-        private Transform pivot; // Pivot for orbiting the ball
-        private Transform cameraTransform; // Camera itself, always looks at the ball
+        [Header("Look At Settings")] public Vector3 lookAtOffset = Vector3.zero; // Offset for the look-at position
 
-        private Vector3 lastBallPosition; // To track the ball's previous position for direction checking
-        private Vector3 ballDirection; // To store the direction of the ball's movement
-
-        private void Start()
+        private Vector3 currentCameraDirection; // Current direction of the camera relative to the ball
+        private bool isBallMoving = false;
+        [SerializeField] private bool pauseAlignment = false;
+        void Start()
         {
-            // Initialize references
-            cameraRoot = transform;
-            pivot = transform.GetChild(0); // Pivot should be the first child of CameraRoot
-            cameraTransform = pivot.GetChild(0); // Camera should be the child of Pivot
-            lastBallPosition = ball.position; // Set initial position of the ball
+            // Initialize the camera direction to be directly behind the ball
+            currentCameraDirection = -ball.forward.normalized;
         }
-
-        private void FixedUpdate()
+        private void Update()
         {
-            if (ball == null || ballRigidbody == null) return;
-
-            // Step 1: Smoothly follow the ball with CameraRoot, adjusting the position based on the offset
-            Vector3 targetPosition = ball.position + offset;
-            cameraRoot.position = Vector3.Lerp(cameraRoot.position, targetPosition, followSpeed * Time.fixedDeltaTime);
-
-            // Step 2: Check the ball's movement direction
-            ballDirection = ball.position - lastBallPosition;
-            lastBallPosition = ball.position;
-
-            // Step 3: If the ball is moving in the opposite direction, reverse the orbit direction
-            if (ballDirection.sqrMagnitude > 0.01f) // Only check when the ball is moving
+            if (ball == null || cameraTransform == null)
             {
-                Vector3 flatDirection = new Vector3(ballDirection.x, 0, ballDirection.z).normalized; // Ignore Y-axis
-                Vector3 pivotToBall = ball.position - pivot.position; // Direction from pivot to ball
+                Debug.LogWarning("CameraController: Ball or CameraTransform is not assigned!");
+                return;
+            }
 
-                // Calculate dot product to determine if the ball is moving in the opposite direction
-                if (Vector3.Dot(flatDirection, pivotToBall.normalized) < 0)
+            // Calculate the direction the ball is moving and its speed
+            Vector3 ballForward = ball.forward; // Default to the ball's forward direction
+            float ballSpeed = 0f; // Speed of the ball
+            if (ball.GetComponent<Rigidbody>() != null)
+            {
+                Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
+                ballSpeed = ballRigidbody.velocity.magnitude;
+
+                if (ballSpeed > 0.2f) // Ball is moving
                 {
-                    orbitSpeed = -Mathf.Abs(orbitSpeed); // Reverse orbit direction
+                    ballForward = ballRigidbody.velocity.normalized;
+                    isBallMoving = true;
                 }
                 else
                 {
-                    orbitSpeed = Mathf.Abs(orbitSpeed); // Maintain normal orbit direction
+                    isBallMoving = false;
                 }
-
-                // Step 4: Orbit the Pivot around the ball automatically (constant Y-axis rotation)
-                pivot.RotateAround(ball.position, Vector3.up, orbitSpeed * Time.fixedDeltaTime);
             }
 
-            // Step 5: Ensure the Camera always looks at the ball
-            cameraTransform.LookAt(ball.position);
+            // Dynamically adjust alignment speed based on ball's speed
+            var alignmentSpeed = Mathf.Lerp(baseAlignmentSpeed, maxAlignmentSpeed, ballSpeed / speedThreshold);
+            var desiredCameraPosition = Vector3.zero;
+
+            // If the ball alignment is paused then 
+            if (pauseAlignment)
+            {
+                //return;
+            }
+            else
+            {
+                // If the ball is moving, smoothly align the camera to the ball's movement direction
+                if (isBallMoving)
+                {
+                    currentCameraDirection = Vector3
+                        .Slerp(currentCameraDirection, -ballForward, Time.deltaTime * alignmentSpeed).normalized;
+                }
+            }
+
+            // Calculate the desired position for the camera (orbiting around the ball)
+            desiredCameraPosition = ball.position + currentCameraDirection * distance + Vector3.up * height;
+
+            // Smoothly move the camera to the desired position
+            //cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, Time.deltaTime * smoothSpeed);
+            cameraTransform.position = desiredCameraPosition;
+
+            // Make the camera look at the ball with the offset
+            Vector3 lookAtPosition = ball.position + lookAtOffset;
+            cameraTransform.LookAt(lookAtPosition);
+        }
+        public void PauseTheAlignment(bool flag)
+        {
+            pauseAlignment = flag;
+            StartCoroutine(AlignCameraBehindBall());
+        }
+        private IEnumerator AlignCameraBehindBall()
+        {
+            // Align the camera directly behind the ball
+            currentCameraDirection = -ball.forward.normalized;
+            var position = ball.position;
+            // Calculate the desired camera position
+            var desiredPosition = position + currentCameraDirection * distance + Vector3.up * height;
+            // Set the camera position and look at the ball
+            cameraTransform.position = desiredPosition;
+            cameraTransform.LookAt(position + lookAtOffset);
+            yield return null;
+            pauseAlignment = false;
+        }
+        public void SetViewForLevelEnd()
+        {
+            pauseAlignment = true;
+            StartCoroutine(AlignCameraForLevelEnd());
+        }
+        private IEnumerator AlignCameraForLevelEnd()
+        {
+            const float duration = 50f;
+            var time = 0f;
+            while (time < duration)
+            {
+                time += Time.deltaTime / duration;
+                distance = Mathf.Lerp(distance, 10, time);
+                height = Mathf.Lerp(height, 5, time);
+                yield return null;
+            }
+        }
+        public void PauseTheAlignmentOnly()
+        {
+            pauseAlignment = true;
+        }
+        public void UnPauseTheAlignment()
+        {
+            pauseAlignment = false;
+            //StartCoroutine(AlignCameraBackToNormal());
+        }
+        private IEnumerator AlignCameraBackToNormal()
+        {
+            const float duration = 50f;
+            var time = 0f;
+            while (time < duration)
+            {
+                time += Time.deltaTime / duration;
+                distance = Mathf.Lerp(distance, 8, -time);
+                yield return null;
+            }
         }
     }
 }
