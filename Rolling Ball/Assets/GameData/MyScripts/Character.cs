@@ -104,8 +104,8 @@ public class Character : MonoBehaviour
         {
             
         }
-        if (allowDeath)
-            GamePlayManager.Instance.GameOver(3);
+        /*if (allowDeath)
+            GamePlayManager.Instance.GameOver(3);*/
     }
     private void ResetMovement()
     {

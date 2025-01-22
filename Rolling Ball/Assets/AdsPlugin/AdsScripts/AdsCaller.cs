@@ -1,5 +1,4 @@
-﻿using GameAnalyticsSDK;
-using GameData.MyScripts;
+﻿using GameData.MyScripts;
 using UnityEngine;
 public class AdsCaller : MonoBehaviour
 {
@@ -7,14 +6,17 @@ public class AdsCaller : MonoBehaviour
     private float _time = 0;
     private bool _startTimer = false;
     private bool _adReady = false;
-    
-    private float _bannerTime = 0;
-    private bool _startBannerTimer = false;
+    private const string RemoveAdsString = "RemoveAds";
+    public enum InterType
+    {
+        Simple,
+        Timer
+    }
     private void Awake()
     {
         Instance = this;
     }
-    /*private void Update()
+    private void Update()
     {
         if (_startTimer)
         {
@@ -26,22 +28,12 @@ public class AdsCaller : MonoBehaviour
                 _startTimer = false;
             }
         }
-        if(!_startBannerTimer) return;
-        _bannerTime -= Time.deltaTime;
-        if (!(_bannerTime <= 0))
-            return;
-        RequestFlooringBanner();
-        _startBannerTimer = false;
-    }*/
-    public void StartAdTimer(float interval)
-    {
-        _time = interval;
-        _startTimer = true;
     }
-    public void StartBannerAdTimer(float interval)
+    public void StartAdTimer()
     {
-        _bannerTime = interval;
-        _startBannerTimer = true;
+        _time = PlayerPrefsHandler.InterTimeInterval;
+        _startTimer = true;
+        _adReady = false;
     }
     public void EndAdTimer()
     {
@@ -56,7 +48,7 @@ public class AdsCaller : MonoBehaviour
     }
     public void ShowInterstitialAd()
     {
-        if(PlayerPrefsHandler.GetBool("RemoveAds" + PlayerPrefsHandler.CurrentMode)) return;
+        if(PlayerPrefsHandler.GetBool(RemoveAdsString + PlayerPrefsHandler.CurrentMode)) return;
         AdsManager.Instance.ShowInterstitial();
     }
     public bool IsInterstitialAdAvailable()

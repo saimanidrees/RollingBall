@@ -142,10 +142,7 @@ public class MagnetPowerUp : MonoBehaviour
         }
         else
         {
-            if(GamePlayManager.Instance.IsOldControl())
-                yield return new WaitUntil(() => GetComponentInParent<BallController>().startRun);
-            else
-                yield return new WaitUntil(() => GetComponentInParent<PlayerController>().startRun); 
+            yield return new WaitUntil(() => GetComponentInParent<BallController>().startRun);
         }
         var time = 0;
         while (time < duration)

@@ -61,8 +61,7 @@ public class Controls : MonoBehaviour
     public void EnableControls()
     {
         menuItems.SetActive(false);
-        if(GamePlayManager.Instance.IsOldControl())
-            touchPad.SetActive(true);
+        touchPad.SetActive(true);
         EnableScorerUI(GameManager.Instance.IsInfiniteMode());
         GamePlayManager.Instance.StartPlaying();
     }

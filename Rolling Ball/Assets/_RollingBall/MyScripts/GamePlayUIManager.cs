@@ -21,6 +21,7 @@ namespace _RollingBall.MyScripts
         [SerializeField] private Menu[] subMenus;
         [SerializeField] private Menu[] specialMenus;
         [SerializeField] private BallLivesUI ballLivesUI;
+        [SerializeField] private Swerve swerveTouch;
 
         #endregion
     
@@ -120,6 +121,10 @@ namespace _RollingBall.MyScripts
         public BallLivesUI GetBallLivesUI()
         {
             return ballLivesUI;
+        }
+        public Swerve GetSwerveInputs()
+        {
+            return swerveTouch;
         }
     }
 }

@@ -5,6 +5,7 @@ public class LevelProgressTracker : MonoBehaviour
 {
     private Transform _ball; // Reference to the ball
     [SerializeField] private Transform[] pathPoints; // Transform points defining the path
+    [SerializeField] private Transform[] revivePoints;
     [SerializeField] private Slider progressSlider; // UI slider to show progress
     [SerializeField] private Text levelNoText;
     [SerializeField] private bool activateCameraReCentering = true;
@@ -12,7 +13,6 @@ public class LevelProgressTracker : MonoBehaviour
     private const string LevelString = "Level ";
     private void Start()
     {
-        GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(activateCameraReCentering);
         _ball = GamePlayManager.Instance.ball.transform;
         levelNoText.text = LevelString + PlayerPrefsHandler.LevelsCounter;
         // Calculate the total distance along the path at the start
@@ -83,5 +83,18 @@ public class LevelProgressTracker : MonoBehaviour
         t = Mathf.Clamp01(t);
         // Calculate the closest point on the segment
         return segmentStart + t * segmentVector;
+    }
+    public Transform GetClosestTransform(Vector3 ballLastPosition)
+    {
+        Transform closestTransform = null;
+        var closestDistance = Mathf.Infinity;
+        foreach (var t in revivePoints)
+        {
+            var distance = Vector3.Distance(ballLastPosition, t.position);
+            if (!(distance < closestDistance)) continue;
+            closestDistance = distance;
+            closestTransform = t;
+        }
+        return closestTransform;
     }
 }

@@ -4,25 +4,27 @@ namespace _RollingBall.MyScripts
 {
     public class CameraController : MonoBehaviour
     {
-        [Header("References")] public Transform ball; // The ball to follow
-        public Transform cameraTransform; // The camera's transform (child of CameraRoot)
-
-        [Header("Camera Settings")] public float height = 5f; // Height offset of the camera
-        public float distance = 10f; // Distance behind the ball
-
-        [Header("Alignment Settings")] public float baseAlignmentSpeed = 1f; // Minimum alignment speed
-        public float maxAlignmentSpeed = 5f; // Maximum alignment speed
-        public float speedThreshold = 10f; // Maximum ball speed for scaling alignment speed
-
-        [Header("Look At Settings")] public Vector3 lookAtOffset = Vector3.zero; // Offset for the look-at position
-
-        private Vector3 currentCameraDirection; // Current direction of the camera relative to the ball
-        private bool isBallMoving = false;
-        [SerializeField] private bool pauseAlignment = false;
-        void Start()
+        [Header("References")]
+        [SerializeField] private Transform ball; // The ball to follow
+        private Rigidbody _ballRigidbody;
+        [SerializeField] private Transform cameraTransform; // The camera's transform (child of CameraRoot)
+        [Header("Camera Settings")]
+        [SerializeField] private float height = 5f; // Fixed height offset of the camera
+        [SerializeField] private float distance = 10f; // Fixed distance behind the ball
+        [SerializeField] private float minAlignmentSpeed = 1f; // Minimum alignment speed
+        [SerializeField] private float maxAlignmentSpeed = 5f; // Maximum alignment speed
+        [SerializeField] private float orbitSpeed = 2f; // Speed for orbiting during reverse movement
+        [Header("Look At Settings")]
+        [SerializeField] private Vector3 lookAtOffset = Vector3.zero; // Offset for the look-at position
+        private Vector3 _currentCameraDirection; // Current direction of the camera relative to the ball
+        private bool _isBallMoving = false;
+        [SerializeField]
+        private bool pauseAlignment = false, pauseTheFollowing = false;
+        private void Start()
         {
+            _ballRigidbody = ball.GetComponent<Rigidbody>();
             // Initialize the camera direction to be directly behind the ball
-            currentCameraDirection = -ball.forward.normalized;
+            _currentCameraDirection = -ball.forward.normalized;
         }
         private void Update()
         {
@@ -31,55 +33,56 @@ namespace _RollingBall.MyScripts
                 Debug.LogWarning("CameraController: Ball or CameraTransform is not assigned!");
                 return;
             }
-
-            // Calculate the direction the ball is moving and its speed
-            Vector3 ballForward = ball.forward; // Default to the ball's forward direction
-            float ballSpeed = 0f; // Speed of the ball
-            if (ball.GetComponent<Rigidbody>() != null)
+            if (pauseTheFollowing) return;
+            // Calculate ball's movement direction
+            var ballForward = ball.forward;
+            var ballSpeed = 0f;
+            ballSpeed = _ballRigidbody.velocity.magnitude;
+            if (ballSpeed > 0.2f)
             {
-                Rigidbody ballRigidbody = ball.GetComponent<Rigidbody>();
-                ballSpeed = ballRigidbody.velocity.magnitude;
-
-                if (ballSpeed > 0.2f) // Ball is moving
-                {
-                    ballForward = ballRigidbody.velocity.normalized;
-                    isBallMoving = true;
-                }
-                else
-                {
-                    isBallMoving = false;
-                }
-            }
-
-            // Dynamically adjust alignment speed based on ball's speed
-            var alignmentSpeed = Mathf.Lerp(baseAlignmentSpeed, maxAlignmentSpeed, ballSpeed / speedThreshold);
-            var desiredCameraPosition = Vector3.zero;
-
-            // If the ball alignment is paused then 
-            if (pauseAlignment)
-            {
-                //return;
+                ballForward = _ballRigidbody.velocity.normalized;
+                _isBallMoving = true;
             }
             else
             {
-                // If the ball is moving, smoothly align the camera to the ball's movement direction
-                if (isBallMoving)
-                {
-                    currentCameraDirection = Vector3
-                        .Slerp(currentCameraDirection, -ballForward, Time.deltaTime * alignmentSpeed).normalized;
-                }
+                _isBallMoving = false;
             }
-
-            // Calculate the desired position for the camera (orbiting around the ball)
-            desiredCameraPosition = ball.position + currentCameraDirection * distance + Vector3.up * height;
-
-            // Smoothly move the camera to the desired position
-            //cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredCameraPosition, Time.deltaTime * smoothSpeed);
-            cameraTransform.position = desiredCameraPosition;
-
-            // Make the camera look at the ball with the offset
-            Vector3 lookAtPosition = ball.position + lookAtOffset;
+            // Handle camera behavior during reverse movement or alignment
+            if (!pauseAlignment)
+            {
+                SmoothAlignAndOrbit(ballForward, ballSpeed);
+            }
+            // Update the camera's position and make it look at the ball
+            var desiredPosition = ball.position + _currentCameraDirection * distance + Vector3.up * height;
+            cameraTransform.position = desiredPosition;
+            var lookAtPosition = ball.position + lookAtOffset;
             cameraTransform.LookAt(lookAtPosition);
+        }
+        private void SmoothAlignAndOrbit(Vector3 ballForward, float ballSpeed)
+        {
+            // Dynamically calculate alignment speed based on ball's speed
+            var dynamicAlignmentSpeed = Mathf.Lerp(minAlignmentSpeed, maxAlignmentSpeed, ballSpeed / 10f);
+
+            if (_isBallMoving)
+            {
+                // Align smoothly behind the ball's movement direction
+                var targetDirection = -ballForward;
+                _currentCameraDirection = Vector3.Slerp(
+                    _currentCameraDirection,
+                    targetDirection,
+                    Time.deltaTime * dynamicAlignmentSpeed
+                ).normalized;
+            }
+            else
+            {
+                // Orbit smoothly around the ball when reversing or stationary
+                var orbitAngle = orbitSpeed * Time.deltaTime;
+                var orbitRotation = Quaternion.AngleAxis(orbitAngle, Vector3.up);
+                _currentCameraDirection = orbitRotation * _currentCameraDirection;
+            }
+            // Prevent abrupt flipping by constraining camera's vertical axis
+            _currentCameraDirection.y = 0;
+            _currentCameraDirection.Normalize();
         }
         public void PauseTheAlignment(bool flag)
         {
@@ -89,10 +92,10 @@ namespace _RollingBall.MyScripts
         private IEnumerator AlignCameraBehindBall()
         {
             // Align the camera directly behind the ball
-            currentCameraDirection = -ball.forward.normalized;
+            _currentCameraDirection = -ball.forward.normalized;
             var position = ball.position;
             // Calculate the desired camera position
-            var desiredPosition = position + currentCameraDirection * distance + Vector3.up * height;
+            var desiredPosition = position + _currentCameraDirection * distance + Vector3.up * height;
             // Set the camera position and look at the ball
             cameraTransform.position = desiredPosition;
             cameraTransform.LookAt(position + lookAtOffset);
@@ -123,18 +126,54 @@ namespace _RollingBall.MyScripts
         public void UnPauseTheAlignment()
         {
             pauseAlignment = false;
-            //StartCoroutine(AlignCameraBackToNormal());
         }
-        private IEnumerator AlignCameraBackToNormal()
+        public void PauseTheFollowing(bool flag)
         {
-            const float duration = 50f;
+            pauseTheFollowing = flag;
+        }
+
+        private Coroutine _coroutine;
+        public void SetViewForBallSelection()
+        {
+            if(_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(AlignCameraForBallSelection());
+        }
+        private IEnumerator AlignCameraForBallSelection()
+        {
+            const float duration = 5f;
             var time = 0f;
             while (time < duration)
             {
                 time += Time.deltaTime / duration;
-                distance = Mathf.Lerp(distance, 8, -time);
+                height = Mathf.Lerp(height, 5, time);
+                distance = Mathf.Lerp(distance, 8, time);
+                lookAtOffset = new Vector3(lookAtOffset.x, Mathf.Lerp(lookAtOffset.y, 0, time), lookAtOffset.z);
                 yield return null;
             }
+            height = 5f;
+            distance = 8f;
+            lookAtOffset = new Vector3(lookAtOffset.x, 0f, lookAtOffset.z);
+        }
+        public void SetBackNormalView()
+        {
+            if(_coroutine != null) StopCoroutine(_coroutine);
+            _coroutine = StartCoroutine(AlignCameraBackToNormal());
+        }
+        private IEnumerator AlignCameraBackToNormal()
+        {
+            const float duration = 5f;
+            var time = 0f;
+            while (time < duration)
+            {
+                time += Time.deltaTime / duration;
+                height = Mathf.Lerp(height, 3, time);
+                distance = Mathf.Lerp(distance, 6, time);
+                lookAtOffset = new Vector3(lookAtOffset.x, Mathf.Lerp(lookAtOffset.y, 0.8f, time), lookAtOffset.z);
+                yield return null;
+            }
+            height = 3f;
+            distance = 6f;
+            lookAtOffset = new Vector3(lookAtOffset.x, 0.8f, lookAtOffset.z);
         }
     }
 }

@@ -82,6 +82,10 @@ public class Callbacks : MonoBehaviour {
                 _RollingBall.MyScripts.GamePlayManager.Instance.RewardNextLevel();
                 GameAnalytics.NewAdEvent(GAAdAction.RewardReceived, GAAdType.Video, MaxString, VideoRewardString + SkipLevelString);
                 break;
+            case _RollingBall.MyScripts.PlayerPrefsHandler.RefillBalls:
+                _RollingBall.MyScripts.GamePlayManager.Instance.RewardRefillBalls();
+                GameAnalytics.NewAdEvent(GAAdAction.RewardReceived, GAAdType.Video, MaxString, VideoRewardString + SkipLevelString);
+                break;
         }
     }
 }

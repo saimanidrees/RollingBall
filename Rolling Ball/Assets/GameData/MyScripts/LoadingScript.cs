@@ -12,6 +12,7 @@ public class LoadingScript : MonoBehaviour
     }
     public static void SwitchScene()
     {
-        SceneManager.LoadScene(GameManager.Instance.GetModeSceneIndex());
+        PlayerPrefsHandler.CurrentMode = 2;
+        SceneManager.LoadScene(PlayerPrefsHandler.CurrentMode + 1);
     }
 }

@@ -9,14 +9,16 @@ namespace _RollingBall.MyScripts
         public bool gameStartFlag = false, gamePauseFlag = false, gameOverFlag = false, gameCompleteFlag = false, gameContinueFlag = false;
         public GamePlayUIManager uiManager;
         public BallController ball;
-        [ReadOnly] public GameObject currentLevel;
+        [ReadOnly] public LevelProgressTracker currentLevel;
         private const string LevelsPath = "Level";
         public static GamePlayManager Instance;
-        [SerializeField] private CameraViewController cameraViewController;
+        //[SerializeField] private CameraViewController cameraViewController;
         private const int TotalLives = 5;
         private int _liveCount = 0;
         [SerializeField] private CameraController cameraController;
         public VibrationManager vibrationManager;
+        private Vector3 _ballPositionForRevive;
+        private Quaternion _ballRotationForRevive;
         private void Awake()
         {
             Instance = this;
@@ -24,7 +26,9 @@ namespace _RollingBall.MyScripts
         private void Start()
         {
             SoundController.Instance.PlayRollingBallBgMusic();
-            uiManager.OpenSpecialMenu(PlayerPrefsHandler.CurrencyCounter);
+            AdsCaller.Instance.ShowBanner();
+            if(GameData.MyScripts.PlayerPrefsHandler.InterType == AdsCaller.InterType.Timer.ToString())
+                AdsCaller.Instance.StartAdTimer();
             CurrentLevelSettings();
         }
         public bool IsGameReadyToPlay()
@@ -64,7 +68,8 @@ namespace _RollingBall.MyScripts
         private void CurrentLevelSettings()
         {
             var path = LevelsPath + PlayerPrefsHandler.CurrentLevelNo;
-            currentLevel = Instantiate((GameObject)Resources.Load(path));
+            var level = Instantiate((GameObject)Resources.Load(path));
+            currentLevel = level.GetComponent<LevelProgressTracker>();
             Invoke(nameof(LevelStart), 0.1f);
         }
         private void LevelStart()
@@ -84,16 +89,16 @@ namespace _RollingBall.MyScripts
         {
             SetNextLevel();
             cameraController.SetViewForLevelEnd();
-            GetCameraViewController().SetLevelCompleteView();
             vibrationManager.TapVibrate();
+            SoundController.Instance.PlayRollingBallWinSound();
+            uiManager.SwitchMenu(PlayerPrefsHandler.LevelComplete);
             yield return new WaitForSeconds(delay);
             if (gameOverFlag)
             {
                 SetPreviousLevel();
                 yield break;
             }
-            SoundController.Instance.PlayRollingBallWinSound();
-            uiManager.SwitchMenu(PlayerPrefsHandler.LevelComplete);
+            ShowLevelCompleteAd();
             const string modeName = GameData.MyScripts.PlayerPrefsHandler.RollingBallMode;
             GameData.MyScripts.PlayerPrefsHandler.CurrentMode = GameData.MyScripts.GameManager.Instance.GetModeNo(modeName);
             GameData.MyScripts.GameManager.Instance.StartMode(modeName);
@@ -106,12 +111,10 @@ namespace _RollingBall.MyScripts
         }
         private IEnumerator DelayForLevelFail(float delay)
         {
+            cameraController.PauseTheFollowing(true);
             yield return new WaitForSeconds(delay);
             SoundController.Instance.PlayGameCompleteSound();
             uiManager.SwitchMenu(PlayerPrefsHandler.LevelFail);
-            const string modeName = GameData.MyScripts.PlayerPrefsHandler.RollingBallMode;
-            GameData.MyScripts.PlayerPrefsHandler.CurrentMode = GameData.MyScripts.GameManager.Instance.GetModeNo(modeName);
-            GameData.MyScripts.GameManager.Instance.StartMode(modeName);
         }
         private void SetNextLevel()
         {
@@ -120,8 +123,6 @@ namespace _RollingBall.MyScripts
             else
                 PlayerPrefsHandler.CurrentLevelNo = 0;
             PlayerPrefsHandler.LevelsCounter++;
-            //Debug.Log("CurrentLevelNo: " + PlayerPrefsHandler.CurrentLevelNo);
-            //Debug.Log("LevelsCounter: " + PlayerPrefsHandler.LevelsCounter);
         }
         private void SetPreviousLevel()
         {
@@ -129,30 +130,6 @@ namespace _RollingBall.MyScripts
                 PlayerPrefsHandler.CurrentLevelNo -= 1;
             else
                 PlayerPrefsHandler.CurrentLevelNo = PlayerPrefsHandler.TotalLevels - 1;
-        }
-        public CameraViewController GetCameraViewController()
-        {
-            return cameraViewController;
-        }
-        public void SetReverseViewCamera(int priorityValue)
-        {
-            cameraViewController.SetReverseViewCamera(priorityValue);
-        }
-        public void SetTopViewCamera(int priorityValue)
-        {
-            cameraViewController.SetTopViewCamera(priorityValue);
-        }
-        public void SetTopViewCamera2(int priorityValue)
-        {
-            cameraViewController.SetTopViewCamera2(priorityValue);
-        }
-        public void SetReCentering(bool flag)
-        {
-            cameraViewController.SetReCentering(flag);
-        }
-        public void SetXAxisValue(float newValue)
-        {
-            cameraViewController.SetXAxisValue(newValue);
         }
         public void StartMode(string modeName)
         {
@@ -168,14 +145,36 @@ namespace _RollingBall.MyScripts
         {
             uiManager.GetBallLivesUI().Die(_liveCount);
             _liveCount++;
-            if (_liveCount >= TotalLives)
-                return false;
-            else
-                return true;
+            return _liveCount < TotalLives;
         }
         public CameraController GetCameraController()
         {
             return cameraController;
+        }
+        public void RewardRefillBalls()
+        {
+            _liveCount = 0;
+            uiManager.GetBallLivesUI().Refill();
+            uiManager.SwitchMenu(PlayerPrefsHandler.HUD);
+            ball.GetComponent<Rigidbody>().isKinematic = true;
+            var transform1 = ball.transform;
+            transform1.position = _ballPositionForRevive;
+            transform1.rotation = _ballRotationForRevive;
+            ball.GetComponent<Rigidbody>().isKinematic = false;
+            cameraController.PauseTheFollowing(false);
+            cameraController.PauseTheAlignment(true);
+        }
+        public void SetPositionRotationForRevive(Vector3 newPos, Quaternion newRot)
+        {
+            _ballPositionForRevive = newPos;
+            _ballRotationForRevive = newRot;
+        }
+        public void ShowLevelCompleteAd()
+        {
+            if(GameData.MyScripts.PlayerPrefsHandler.InterType == AdsCaller.InterType.Timer.ToString())
+                AdsCaller.Instance.ShowTimerAd();
+            else
+                AdsCaller.Instance.ShowInterstitialAd();
         }
         private void SendProgressionEvent(GAProgressionStatus status)
         {

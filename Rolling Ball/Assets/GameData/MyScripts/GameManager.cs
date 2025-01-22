@@ -1,7 +1,6 @@
 using GameAnalyticsSDK;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 namespace GameData.MyScripts
 {
     public class GameManager : MonoBehaviour
@@ -96,9 +95,9 @@ namespace GameData.MyScripts
         }
         public void SetEndingSceneIndex()
         {
-            const int ENDING_SCENES_LIMIT = 1;
+            const int endingScenesLimit = 1;
             _endingSceneIndex++;
-            if (_endingSceneIndex > ENDING_SCENES_LIMIT)
+            if (_endingSceneIndex > endingScenesLimit)
                 _endingSceneIndex = 0;
         }
     }

@@ -17,7 +17,6 @@ namespace _RollingBall.MyScripts
                 PlayerPrefsHandler.BallSkinNo += 1;
             else
                 PlayerPrefsHandler.BallSkinNo = 0;
-            //ApplySkin(GetBallSkinName(PlayerPrefsHandler.BallSkinNo));
         }
         public void ApplySkin(int ballSkinNo)
         {

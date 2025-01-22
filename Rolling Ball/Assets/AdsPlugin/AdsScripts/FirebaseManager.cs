@@ -58,9 +58,10 @@ public class FirebaseManager : MonoBehaviour
             // yet, or if we ask for values that the server doesn't have:
             // server
             // These are the values that are used if we haven't fetched data from the
-            {PlayerPrefsHandler.ControlExperimentString, "Old"},
             {PlayerPrefsHandler.EnableFailOverString, false},
             {PlayerPrefsHandler.MakeLevelsEasyString, false},
+            {PlayerPrefsHandler.InterTypeString, AdsCaller.InterType.Simple.ToString()},
+            {PlayerPrefsHandler.InterTimeIntervalString, 30},
         };
         Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.SetDefaultsAsync(defaults)
             .ContinueWithOnMainThread(task =>
@@ -139,12 +140,14 @@ public class FirebaseManager : MonoBehaviour
     }
     private static void GetRemoteData()
     {
-        PlayerPrefsHandler.ControlType = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(
-            PlayerPrefsHandler.ControlExperimentString).StringValue;
         PlayerPrefsHandler.EnableFailOver = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(
             PlayerPrefsHandler.EnableFailOverString).BooleanValue;
             PlayerPrefsHandler.MakeLevelsEasy = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(
                         PlayerPrefsHandler.MakeLevelsEasyString).BooleanValue;
+            PlayerPrefsHandler.InterType = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(
+                PlayerPrefsHandler.InterTypeString).StringValue;
+            PlayerPrefsHandler.InterTimeInterval = (int)Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(
+                PlayerPrefsHandler.InterTimeIntervalString).LongValue;
     }
     #endregion
 }

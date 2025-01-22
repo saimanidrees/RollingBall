@@ -1,17 +1,19 @@
-using CnControls;
 using UnityEngine;
 namespace _RollingBall.MyScripts
 {
     public class BallInputProvider : MonoBehaviour, IInputProvider
     {
+        private Swerve _swerveInputs;
         private const string HorizontalString = "Horizontal", VerticalString = "Vertical";
         public float GetHorizontalInput()
         {
-            return CnInputManager.GetAxis(HorizontalString);
+            if (!_swerveInputs) _swerveInputs = GamePlayManager.Instance.uiManager.GetSwerveInputs();
+            return _swerveInputs.MoveFactorX;
         }
         public float GetVerticalInput()
         {
-            return CnInputManager.GetAxis(VerticalString);
+            if (!_swerveInputs) _swerveInputs = GamePlayManager.Instance.uiManager.GetSwerveInputs();
+            return _swerveInputs.MoveFactorY;
         }
     }
     public interface IInputProvider

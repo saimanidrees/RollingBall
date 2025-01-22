@@ -46,6 +46,7 @@ TagManager:
   - SewerageBall
   - ActivateCameraReCentering
   - Prop
+  - Platform
   layers:
   - Default
   - TransparentFX

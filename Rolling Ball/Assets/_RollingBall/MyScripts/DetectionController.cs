@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 namespace _RollingBall.MyScripts
 {
@@ -23,11 +24,11 @@ namespace _RollingBall.MyScripts
                     break;
                 case PlayerPrefsHandler.MovingPlatformTag:
                     transform.SetParent(collision.transform);
-                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
+                    GamePlayManager.Instance.vibrationManager.TapPeekVibrate();
                     break;
                 case PlayerPrefsHandler.PropTag:
                     SoundController.Instance.PlayRollingBallHitSound();
-                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
+                    GamePlayManager.Instance.vibrationManager.TapPeekVibrate();
                     break;
             }
         }
@@ -48,6 +49,10 @@ namespace _RollingBall.MyScripts
                 case PlayerPrefsHandler.MovingPlatformTag:
                     transform.SetParent(null);
                     break;
+                case PlayerPrefsHandler.PlatformTag:
+                    _movable ??= GetComponent<IMovable>();
+                    _movable.SetBallLastPos(transform.position);
+                    break;
             }
         }
         private void OnTriggerEnter(Collider other)
@@ -55,40 +60,33 @@ namespace _RollingBall.MyScripts
             switch (other.gameObject.tag)
             {
                 case PlayerPrefsHandler.ReverseViewTriggerTag:
-                    GamePlayManager.Instance.SetReverseViewCamera(9);
                     GamePlayManager.Instance.GetCameraController().UnPauseTheAlignment();
                     break;
                 case PlayerPrefsHandler.NonReverseViewTriggerTag:
-                    GamePlayManager.Instance.SetReverseViewCamera(11);
                     GamePlayManager.Instance.GetCameraController().PauseTheAlignmentOnly();
                     break;
                 case PlayerPrefsHandler.NonTopViewTriggerTag:
-                    GamePlayManager.Instance.SetTopViewCamera(9);
                     break;
                 case PlayerPrefsHandler.TopViewTriggerTag:
-                    GamePlayManager.Instance.SetTopViewCamera(11);
                     break;
                 case PlayerPrefsHandler.TopViewTrigger2Tag:
-                    GamePlayManager.Instance.SetTopViewCamera2(11);
                     break;
                 case PlayerPrefsHandler.CollectableTag:
                     other.tag = PlayerPrefsHandler.NoneTag;
                     other.transform.GetChild(0).gameObject.SetActive(false);
                     other.transform.GetChild(1).gameObject.SetActive(true);
                     SoundController.Instance.PlayRollingBallCoinSound();
-                    GamePlayManager.Instance.vibrationManager.TapPopVibrate();
+                    GamePlayManager.Instance.vibrationManager.TapPeekVibrate();
                     break;
                 case PlayerPrefsHandler.NormalDragTag:
                     _movable ??= GetComponent<IMovable>();
                     _movable.MinimumDrag(false);
                     break;
                 case PlayerPrefsHandler.CameraViewTriggerTag:
-                    GamePlayManager.Instance.GetCameraViewController().ChangeCameraView(other.GetComponent<CameraViewTrigger>().cameraViewToChange);
                     break;
                 case PlayerPrefsHandler.OppositeGravityTriggerTag:
                     _movable ??= GetComponent<IMovable>();
                     _movable.FlyUp(true);
-                    GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(false);
                     GamePlayManager.Instance.GetCameraController().PauseTheAlignmentOnly();
                     break;
                 case PlayerPrefsHandler.LevelCompleteTriggerTag:
@@ -97,7 +95,6 @@ namespace _RollingBall.MyScripts
                     GamePlayManager.Instance.LevelComplete(3f);
                     break;
                 case PlayerPrefsHandler.ActivateReCenteringTag:
-                    GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(true);
                     break;
             }
         }
@@ -109,7 +106,6 @@ namespace _RollingBall.MyScripts
                 case PlayerPrefsHandler.OppositeGravityTriggerTag:
                     _movable ??= GetComponent<IMovable>();
                     _movable.FlyUp(false);
-                    GamePlayManager.Instance.GetCameraViewController().ActivateReCentering(true);
                     GamePlayManager.Instance.GetCameraController().UnPauseTheAlignment();
                     break;
             }

@@ -33,9 +33,9 @@ public class BallCustomization : MonoBehaviour
     public void BackBtnClicked()
     {
         SoundController.Instance.PlayBtnClickSound();
-        GamePlayManager.Instance.GetCameraViewController().SetBallSelectionView(9);
         GamePlayManager.Instance.uiManager.SwitchMenu(PlayerPrefsHandler.HUD);
         _ball.ApplySkin(PlayerPrefsHandler.BallSkinNo);
+        GamePlayManager.Instance.GetCameraController().SetBackNormalView();
     }
     public void RightBtnClicked()
     {

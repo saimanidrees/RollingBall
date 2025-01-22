@@ -54,14 +54,15 @@ namespace GameData.MyScripts
 
         #region Firebase
 
-        public const string ControlExperimentString = "Control";
-        public static string ControlType = "Old";
         public const string EnableFailOverString = "EnableFailOver";
         public static bool EnableFailOver = false;
         public const string MakeLevelsEasyString = "MakeLevelsEasy";
         public static bool MakeLevelsEasy = false;
         public static readonly string[] LevelsSequenceArray = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
-
+        public const string InterTypeString = "InterType", InterTimeIntervalString = "InterTimeInterval";
+        public static string InterType = AdsCaller.InterType.Simple.ToString();
+        public static int InterTimeInterval = 30;
+        
         #endregion
 
         public static readonly List<int> BallNumbers = new List<int> { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };

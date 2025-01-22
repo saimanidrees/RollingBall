@@ -33,13 +33,13 @@ namespace _RollingBall.MyScripts
         public const string CollectableTag = "Collectable", NoneTag = "None", NormalDragTag = "NormalDrag", TopViewTrigger2Tag = "TopViewTrigger2";
         public const string CameraViewTriggerTag = "CameraViewTrigger", OppositeGravityTriggerTag = "OppositeGravity";
         public const string LevelCompleteTriggerTag = "LevelCompleteTrigger", ActivateReCenteringTag = "ActivateCameraReCentering";
-        public const string PropTag = "Prop";
+        public const string PropTag = "Prop", PlatformTag = "Platform";
         
         #endregion
     
         #region Buttons
     
-        public const string SwipeToPlay = "SwipeToPlay";
+        public const string RefillBalls = "RefillBalls";
         public const string NextComplete = "NextComplete";
         public const string Replay = "Replay", Home = "Home";
         public const string SettingsClose = "SettingsClose";

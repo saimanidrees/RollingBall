@@ -12,8 +12,7 @@ namespace GameData.MyScripts
         public GameObject currentPlayer;
         public GameObject playerCamera;
         [SerializeField] private BallController ballController;
-        [SerializeField] private PlayerController playerController;
-        [SerializeField] private GameObject oldCamera, newCamera;
+        [SerializeField] private GameObject oldCamera;
         [SerializeField] private Transform playerPositions;
         [SerializeField] private GameObject levelFailTrigger;
         [SerializeField] private GameObject[] endingScenes;
@@ -95,16 +94,8 @@ namespace GameData.MyScripts
                 SendProgressionEvent(GAProgressionStatus.Start);
                 return;
             }
-            if (PlayerPrefsHandler.ControlType == "Old")
-            {
-                currentPlayer = ballController.gameObject;
-                playerCamera = oldCamera;
-            }
-            else
-            {
-                currentPlayer = playerController.gameObject;
-                playerCamera = newCamera;
-            }
+            currentPlayer = ballController.gameObject;
+            playerCamera = oldCamera;
             var modeName = GameManager.Instance.GetModeName(PlayerPrefsHandler.CurrentMode);
             var currentLevelIndex = PlayerPrefsHandler.GetCurrentLevel(modeName);
             var index = int.Parse(PlayerPrefsHandler.LevelsSequenceArray[currentLevelIndex]);
@@ -187,24 +178,14 @@ namespace GameData.MyScripts
             if (currentLevelNo != 0)
                 AdsCaller.Instance.ShowInterstitialAd();
         }
-        public bool IsOldControl()
-        {
-            return PlayerPrefsHandler.ControlType == "Old";
-        }
         public void EnablePlayer(bool flag)
         {
             currentPlayer.SetActive(flag);
-            if(IsOldControl())
-                currentPlayer.GetComponent<BallController>().startRun = flag;
-            else
-                currentPlayer.GetComponent<PlayerController>().startRun = flag;
+            currentPlayer.GetComponent<BallController>().startRun = flag;
         }
         private void SetPlayerToCamera()
         {
-            if(IsOldControl())
-                playerCamera.GetComponent<PerfectCameraController>().target = currentPlayer.GetComponent<BallController>().GetCameraTarget();
-            else
-                playerCamera.GetComponent<CameraController>().target = currentPlayer.GetComponent<PlayerController>().GetCameraTarget();
+            playerCamera.GetComponent<PerfectCameraController>().target = currentPlayer.GetComponent<BallController>().GetCameraTarget();
         }
 
         private void RemovePlayerFromCamera()
@@ -214,19 +195,13 @@ namespace GameData.MyScripts
                 playerCamera.GetComponent<PerfectCameraController>().target = null;
                 return;
             }
-            if (IsOldControl())
-                playerCamera.GetComponent<PerfectCameraController>().target = null;
-            else
-                playerCamera.GetComponent<CameraController>().target = null;
+            playerCamera.GetComponent<PerfectCameraController>().target = null;
         }
         public void StartPlaying()
         {
             if (GameManager.Instance.IsBallMergeMode())
             {
-                if (IsOldControl())
-                    currentPlayer.GetComponent<BallController>().StartMovement(true);
-                else
-                    currentPlayer.GetComponent<PlayerController>().StartMovement(true);
+                currentPlayer.GetComponent<BallController>().StartMovement(true);
             }
             else if (GameManager.Instance.IsInfiniteMode())
             {
@@ -274,10 +249,7 @@ namespace GameData.MyScripts
             uiManager.controls.DisableControls();
             SetPlayerToCamera();
             //SetGameToPlay(0);
-            if(IsOldControl())
-                currentPlayer.GetComponent<BallController>().StartMovement(false);
-            else
-                currentPlayer.GetComponent<PlayerController>().StartMovement(false);
+            currentPlayer.GetComponent<BallController>().StartMovement(false);
             rb.isKinematic = false;
             EnableLevelFailTrigger();
             gameOverFlag = false;
@@ -312,10 +284,7 @@ namespace GameData.MyScripts
                 currentPlayer.GetComponent<BallController>().StartMagnetEffect();
                 return;
             }
-            if(IsOldControl())
-                currentPlayer.GetComponent<BallController>().StartMagnetEffect();
-            else
-                currentPlayer.GetComponent<PlayerController>().StartMagnetEffect();
+            currentPlayer.GetComponent<BallController>().StartMagnetEffect();
         }
         public void RewardSkin()
         {
