@@ -27,9 +27,8 @@ namespace GameData.MyScripts
         public static GamePlayManager Instance;
         private void Awake()
         {
-            Application.targetFrameRate = 120;
             Instance = this;
-            SoundController.Instance.PlayBackgroundMusic();;
+            SoundController.Instance.PlayBackgroundMusic();
             FirstPlay();
         }
         private void FirstPlay()

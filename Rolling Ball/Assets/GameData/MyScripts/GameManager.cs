@@ -16,6 +16,7 @@ namespace GameData.MyScripts
             if (Instance) return;
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Application.targetFrameRate = 60;
             GameAnalytics.Initialize();
             if (isTesting)
             {
